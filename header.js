@@ -21,7 +21,8 @@ class Header extends Component {
       <View style={styles.header}>
         <TextInput
           placeholder='Search all gifs...'
-          returnKeyType='done'
+          returnKeyType='search'
+          onSubmitEditing={this.props.submitSearch}
           style={styles.input}
           underlineColorAndroid={'transparent'}/>
       </View>

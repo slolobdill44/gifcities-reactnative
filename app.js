@@ -1,12 +1,34 @@
 import React, { Component } from "react";
-import { View, Text, StyleSheet, Platform } from "react-native";
+import { View, Text, StyleSheet, ListView, Platform } from "react-native";
 import Header from './header';
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      searchQuery: "",
+      searchResults: []
+    }
+
+    this.submitSearch = this.submitSearch.bind(this);
+  }
+
+  submitSearch() {
+    fetch(`https://gifcities.archive.org/api/v1/gifsearch?q=${this.state.searchQuery}`)
+      .then((results) => console.log(results))
+      .then((resultsJson) => this.setState({searchResults: resultsJson}))
+      .catch((error) => {
+        console.error(error);
+      });
+  }
+
   render() {
     return (
       <View style={styles.container}>
-        <Header />
+        <Header
+          onChange={value => this.setState({searchQuery: value})}
+          submitSearch={this.submitSearch}/>
         <View style={styles.content}>
         </View>
       </View>
