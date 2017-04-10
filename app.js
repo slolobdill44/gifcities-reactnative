@@ -7,7 +7,7 @@ class App extends Component {
     super(props);
 
     this.state = {
-      searchQuery: "",
+      searchQuery: '',
       searchResults: []
     }
 
@@ -15,8 +15,10 @@ class App extends Component {
   }
 
   submitSearch() {
-    fetch(`https://gifcities.archive.org/api/v1/gifsearch?q=${this.state.searchQuery}`)
-      .then((results) => console.log(results))
+    fetch(`https://gifcities.archive.org/api/v1/gifsearch?q=${this.state.searchQuery}`, {
+      method: 'GET'
+    })
+      .then((results) => console.log(results.json()))
       .then((resultsJson) => this.setState({searchResults: resultsJson}))
       .catch((error) => {
         console.error(error);
@@ -27,7 +29,7 @@ class App extends Component {
     return (
       <View style={styles.container}>
         <Header
-          onChange={value => this.setState({searchQuery: value})}
+          onChange={(value) => this.setState({searchQuery: value})}
           submitSearch={this.submitSearch}/>
         <View style={styles.content}>
         </View>

@@ -4,16 +4,6 @@ import { View, Text, StyleSheet, TextInput } from "react-native";
 class Header extends Component {
   constructor(props) {
     super(props);
-
-    this.state = {
-      query: ""
-    }
-
-    this.submitSearch = this.submitSearch.bind(this);
-  }
-
-  submitSearch() {
-
   }
 
   render() {
@@ -22,6 +12,7 @@ class Header extends Component {
         <TextInput
           placeholder='Search all gifs...'
           returnKeyType='search'
+          onChangeText={this.props.onChange}
           onSubmitEditing={this.props.submitSearch}
           style={styles.input}
           underlineColorAndroid={'transparent'}/>
