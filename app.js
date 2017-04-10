@@ -7,12 +7,11 @@ class App extends Component {
   constructor(props) {
     super(props);
 
-    // const ds = new ListView.DataSource({rowHasChanged: this._rowHasChanged})
+    const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
 
     this.state = {
       searchQuery: '',
-      searchResults: [],
-      // ds: ds.cloneWithRows([])
+      dataSource: ds
     }
 
     this.submitSearch = this.submitSearch.bind(this);
@@ -22,7 +21,7 @@ class App extends Component {
     fetch(`https://gifcities.archive.org/api/v1/gifsearch?q=${this.state.searchQuery}`)
       .then((res) => {
         res.json().then((resJson) => {
-          this.setState({searchResults: resJson})
+          this.setState({dataSource: this.state.dataSource.cloneWithRows(resJson)})
         })
       })
       .then(() => console.log(this.state))
@@ -39,7 +38,10 @@ class App extends Component {
           onChange={(value) => this.setState({searchQuery: value})}
           submitSearch={this.submitSearch}/>
         <View style={styles.content}>
-
+          <ListView
+            enableEmptySections
+            dataSource={this.state.dataSource}
+            renderRow={(data) => <View><Text>{data.url_text}</Text></View>}/>
         </View>
       </View>
     );
