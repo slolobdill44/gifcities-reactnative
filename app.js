@@ -1,28 +1,35 @@
 import React, { Component } from "react";
 import { View, Text, StyleSheet, ListView, Platform } from "react-native";
 import Header from './header';
+import ImageResult from './image_result';
 
 class App extends Component {
   constructor(props) {
     super(props);
 
+    // const ds = new ListView.DataSource({rowHasChanged: this._rowHasChanged})
+
     this.state = {
       searchQuery: '',
-      searchResults: []
+      searchResults: [],
+      // ds: ds.cloneWithRows([])
     }
 
     this.submitSearch = this.submitSearch.bind(this);
   }
 
   submitSearch() {
-    fetch(`https://gifcities.archive.org/api/v1/gifsearch?q=${this.state.searchQuery}`, {
-      method: 'GET'
-    })
-      .then((results) => console.log(results.json()))
-      .then((resultsJson) => this.setState({searchResults: resultsJson}))
+    fetch(`https://gifcities.archive.org/api/v1/gifsearch?q=${this.state.searchQuery}`)
+      .then((res) => {
+        res.json().then((resJson) => {
+          this.setState({searchResults: resJson})
+        })
+      })
+      .then(() => console.log(this.state))
       .catch((error) => {
         console.error(error);
       });
+
   }
 
   render() {
@@ -32,6 +39,7 @@ class App extends Component {
           onChange={(value) => this.setState({searchQuery: value})}
           submitSearch={this.submitSearch}/>
         <View style={styles.content}>
+
         </View>
       </View>
     );
