@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { View, Text, StyleSheet, ListView, Platform } from "react-native";
+import { View, Text, StyleSheet, ListView, Platform, Image } from "react-native";
 import Header from './header';
 import ImageResult from './image_result';
 
@@ -41,7 +41,14 @@ class App extends Component {
           <ListView
             enableEmptySections
             dataSource={this.state.dataSource}
-            renderRow={(data) => <View><Text>{data.url_text}</Text></View>}/>
+            renderRow={(data) => {
+              return (
+                <View>
+                  <Image source={{uri: `https://web.archive.org/web/${data.gif}`}}
+                    style={{width: data.width, height: data.height}} />
+                </View>
+              )
+            }} />
         </View>
       </View>
     );
