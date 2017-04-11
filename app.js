@@ -43,9 +43,16 @@ class App extends Component {
             dataSource={this.state.dataSource}
             renderRow={(data) => {
               return (
-                <View>
-                  <Image source={{uri: `https://web.archive.org/web/${data.gif}`}}
-                    style={{width: data.width, height: data.height}} />
+                <View style={styles.listElement}>
+                  <Image
+                    source={{uri: `https://web.archive.org/web/${data.gif}`}}
+                    style={{
+                      flex: 1,
+                      width: (data.width > 300) ? undefined : data.width,
+                      height: data.height,
+                      resizeMode: 'contain'
+                    }}
+                    resizeMode={'contain'} />
                 </View>
               )
             }} />
@@ -66,7 +73,16 @@ const styles = StyleSheet.create({
     })
   },
   content: {
-    flex: 1
+    flex: 1,
+  },
+  list: {
+    flex: 1,
+    flexDirection: 'column',
+    flexWrap: 'wrap'
+  },
+  listElement: {
+    left:     0,
+    top:      0,
   }
 })
 

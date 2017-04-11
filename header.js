@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { View, Text, StyleSheet, TextInput } from "react-native";
+import { View, Text, StyleSheet, TextInput, Platform } from "react-native";
 
 class Header extends Component {
   constructor(props) {
@@ -23,21 +23,22 @@ class Header extends Component {
 
 const styles = StyleSheet.create({
   header: {
-    marginTop: 8,
+    marginTop: 16,
     paddingHorizontal: 16,
     flexDirection: "row",
     justifyContent: "space-around",
-    alignItems: "center"
+    alignItems: "center",
+    backgroundColor: "transparent",
   },
   input: {
     paddingLeft: 18,
     paddingRight: 18,
     fontSize: 18,
-    fontFamily: "serif",
     borderWidth: 3,
     borderColor: 'black',
     flex: 1,
-    height: 50
+    height: 50,
+    fontFamily: (Platform.OS === 'ios' ) ? 'Times New Roman' : 'serif'
   }
 })
 
