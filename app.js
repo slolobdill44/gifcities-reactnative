@@ -51,7 +51,10 @@ class App extends Component {
                       position: 'relative',
                       width: (data.width > 300) ? undefined : data.width,
                       height: data.height,
-                      resizeMode: 'contain'
+                      resizeMode: 'contain',
+                      marginLeft: 5,
+                      marginRight: 5,
+                      marginBottom: 25
                     }}
                     resizeMode={'contain'} />
               )
@@ -75,29 +78,18 @@ const styles = StyleSheet.create({
   },
   content: {
     flex: 1,
-    // flexDirection: 'column',
-    // justifyContent: 'space-around'
     flexWrap: 'wrap',
     justifyContent: 'space-around'
   },
   list: {
     flex: 1,
-    // flexDirection: 'row',s
     flexWrap: 'wrap',
-    // justifyContent: 'space-around'
-    // alignItems: 'flex-end',
   },
   listContainer: {
-    // flex: 1,
-    height: 600,
     flexDirection: 'row',
     flexWrap: 'wrap',
     alignItems:'center',
-    alignSelf: 'flex-start',
     justifyContent: 'space-around'
-  },
-  listElement: {
-    flex: 1
   }
 })
 
