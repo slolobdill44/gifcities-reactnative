@@ -38,7 +38,8 @@ const styles = StyleSheet.create({
     borderColor: 'black',
     flex: 1,
     height: 50,
-    fontFamily: (Platform.OS === 'ios' ) ? 'Times New Roman' : 'serif'
+    fontFamily: (Platform.OS === 'ios' ) ? 'Times New Roman' : 'serif',
+    backgroundColor: "transparent",
   }
 })
 

@@ -40,20 +40,20 @@ class App extends Component {
         <View style={styles.content}>
           <ListView
             enableEmptySections
+            contentContainerStyle={styles.listContainer}
+            style={styles.list}
             dataSource={this.state.dataSource}
             renderRow={(data) => {
               return (
-                <View style={styles.listElement}>
                   <Image
                     source={{uri: `https://web.archive.org/web/${data.gif}`}}
                     style={{
-                      flex: 1,
+                      position: 'relative',
                       width: (data.width > 300) ? undefined : data.width,
                       height: data.height,
                       resizeMode: 'contain'
                     }}
                     resizeMode={'contain'} />
-                </View>
               )
             }} />
         </View>
@@ -65,6 +65,7 @@ class App extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    // alignSelf: 'stretch',
     backgroundColor: "#F5F5F5",
     ... Platform.select({
       ios: {
@@ -74,15 +75,29 @@ const styles = StyleSheet.create({
   },
   content: {
     flex: 1,
+    // flexDirection: 'column',
+    // justifyContent: 'space-around'
+    flexWrap: 'wrap',
+    justifyContent: 'space-around'
   },
   list: {
     flex: 1,
-    flexDirection: 'column',
-    flexWrap: 'wrap'
+    // flexDirection: 'row',s
+    flexWrap: 'wrap',
+    // justifyContent: 'space-around'
+    // alignItems: 'flex-end',
+  },
+  listContainer: {
+    // flex: 1,
+    height: 600,
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    alignItems:'center',
+    alignSelf: 'flex-start',
+    justifyContent: 'space-around'
   },
   listElement: {
-    left:     0,
-    top:      0,
+    flex: 1
   }
 })
 
