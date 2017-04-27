@@ -77,9 +77,12 @@ const styles = StyleSheet.create({
     })
   },
   content: {
-    flex: 1,
+    top: 0,
+    bottom: 0,
+    position: 'absolute',
     flexWrap: 'wrap',
-    justifyContent: 'space-around'
+    justifyContent: 'space-around',
+    zIndex: 1
   },
   list: {
     flex: 1,

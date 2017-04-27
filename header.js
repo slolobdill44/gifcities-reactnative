@@ -24,11 +24,13 @@ class Header extends Component {
 const styles = StyleSheet.create({
   header: {
     marginTop: 16,
-    paddingHorizontal: 16,
+    marginHorizontal: 16,
     flexDirection: "row",
     justifyContent: "space-around",
     alignItems: "center",
-    backgroundColor: "transparent",
+    position: 'absolute',
+    backgroundColor: "white",
+    zIndex: 3
   },
   input: {
     paddingLeft: 18,
