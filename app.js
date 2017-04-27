@@ -15,6 +15,7 @@ class App extends Component {
     }
 
     this.submitSearch = this.submitSearch.bind(this);
+    this.renderListHeader = this.renderListHeader.bind(this);
   }
 
   submitSearch() {
@@ -28,7 +29,14 @@ class App extends Component {
       .catch((error) => {
         console.error(error);
       });
+  }
 
+  renderListHeader() {
+    return (
+      <View style={styles.contentClearSection}>
+        <Text></Text>
+      </View>
+    )
   }
 
   render() {
@@ -43,20 +51,21 @@ class App extends Component {
             contentContainerStyle={styles.listContainer}
             style={styles.list}
             dataSource={this.state.dataSource}
+            renderHeader={this.renderListHeader}
             renderRow={(data) => {
               return (
-                  <Image
-                    source={{uri: `https://web.archive.org/web/${data.gif}`}}
-                    style={{
-                      position: 'relative',
-                      width: (data.width > 300) ? undefined : data.width,
-                      height: data.height,
-                      resizeMode: 'contain',
-                      marginLeft: 5,
-                      marginRight: 5,
-                      marginBottom: 25
-                    }}
-                    resizeMode={'contain'} />
+                <Image
+                  source={{uri: `https://web.archive.org/web/${data.gif}`}}
+                  style={{
+                    position: 'relative',
+                    width: (data.width > 300) ? undefined : data.width,
+                    height: data.height,
+                    resizeMode: 'contain',
+                    marginLeft: 5,
+                    marginRight: 5,
+                    marginBottom: 25
+                  }}
+                  resizeMode={'contain'} />
               )
             }} />
         </View>
@@ -76,12 +85,18 @@ const styles = StyleSheet.create({
       }
     })
   },
+  contentClearSection: {
+    // position: 'absolute',
+    alignSelf: 'center',
+    height: 75,
+    width: 500
+  },
   content: {
     top: 0,
     bottom: 0,
     position: 'absolute',
-    flexWrap: 'wrap',
-    justifyContent: 'space-around',
+    // flexWrap: 'wrap',
+    // justifyContent: 'space-between',
     zIndex: 1
   },
   list: {
@@ -89,6 +104,7 @@ const styles = StyleSheet.create({
     flexWrap: 'wrap',
   },
   listContainer: {
+    // borderWidth: 75,
     flexDirection: 'row',
     flexWrap: 'wrap',
     alignItems:'center',
